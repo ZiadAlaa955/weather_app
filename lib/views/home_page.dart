@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/Widgets/no_weather_view.dart';
+import 'package:weather_app/Widgets/weather_info_view.dart';
 import 'package:weather_app/constants.dart';
 
 class HomePage extends StatelessWidget {
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: NoWeatherView(),
+      body: const WeatherInfoView(),
     );
   }
 }
