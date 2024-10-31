@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/Widgets/no_weather_view.dart';
 import 'package:weather_app/Widgets/weather_info_view.dart';
 import 'package:weather_app/constants.dart';
+import 'package:weather_app/views/search_view.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
   static String id = 'homePage';
   @override
   Widget build(BuildContext context) {
@@ -14,14 +16,16 @@ class HomePage extends StatelessWidget {
           'Weatehr App',
           style: TextStyle(
             color: Colors.white,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
           ),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 7),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, SearchView.id);
+              },
               icon: const Icon(Icons.search),
               color: Colors.white,
               iconSize: 25,
@@ -29,7 +33,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: const WeatherInfoView(),
+      body: const NoWeatherView(),
     );
   }
 }
