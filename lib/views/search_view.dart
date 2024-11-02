@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/Models/weather_model.dart';
+import 'package:weather_app/Services/weather_service.dart';
 import 'package:weather_app/constants.dart';
 
 class SearchView extends StatelessWidget {
@@ -24,7 +26,7 @@ class SearchView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: TextField(
-            onSubmitted: (value) {},
+            onSubmitted: (value) async {},
             decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 25, horizontal: 15),

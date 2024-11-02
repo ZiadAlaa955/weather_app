@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/Services/weather_service.dart';
 import 'package:weather_app/views/home_view.dart';
 import 'package:weather_app/views/search_view.dart';
 
 void main() {
-  WeatherService().getCurrentWeather();
   runApp(const WeatherApp());
 }
 
