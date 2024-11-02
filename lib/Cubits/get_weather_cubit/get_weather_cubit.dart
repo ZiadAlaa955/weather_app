@@ -3,7 +3,7 @@ import 'package:weather_app/Cubits/get_weather_cubit/get_weather_state.dart';
 import 'package:weather_app/Models/weather_model.dart';
 import 'package:weather_app/Services/weather_service.dart';
 
-class GetWeatherCubit extends Cubit {
+class GetWeatherCubit extends Cubit<GetWeatherState> {
   GetWeatherCubit() : super(NoWeatherState());
   getCurrentWeather({required String cityName}) async {
     try {
