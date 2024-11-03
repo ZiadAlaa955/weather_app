@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_cubit.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_state.dart';
-import 'package:weather_app/Widgets/no_weather_view.dart';
-import 'package:weather_app/Widgets/weather_info_view.dart';
+import 'package:weather_app/Models/weather_model.dart';
+import 'package:weather_app/Widgets/no_weather_body.dart';
+import 'package:weather_app/Widgets/weather_info_body.dart';
 import 'package:weather_app/constants.dart';
 import 'package:weather_app/views/search_view.dart';
 
@@ -47,7 +48,9 @@ class _HomeViewState extends State<HomeView> {
           if (state is NoWeatherState) {
             return const NoWeatherBody();
           } else if (state is WeatherLoadedState) {
-            return const WeatherInfoBody();
+            return WeatherInfoBody(
+              weatherModel: state.weatherModel,
+            );
           } else {
             return const Text('There is an error ');
           }

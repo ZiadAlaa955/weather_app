@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/Models/weather_model.dart';
 
 class WeatherInfoBody extends StatelessWidget {
-  const WeatherInfoBody({super.key});
-
+  const WeatherInfoBody({super.key, required this.weatherModel});
+  final WeatherModel weatherModel;
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    String image = weatherModel.image;
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Cairo',
-            style: TextStyle(
+            weatherModel.cityName,
+            style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
-            'Updated at 18:45',
-            style: TextStyle(
+            weatherModel.date,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 55,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('Image'),
+              Image.network(
+                image.contains('https:') ? image : ('https:$image'),
+              ),
               Text(
-                '21',
-                style: TextStyle(
+                weatherModel.avgTemp.floor().toString(),
+                style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
@@ -40,14 +44,14 @@ class WeatherInfoBody extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    'maxTemp : 27',
-                    style: TextStyle(
+                    'maxTemp : ${weatherModel.maxTemp.floor().toString()}',
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    'minTemp : 17',
-                    style: TextStyle(
+                    'minTemp : ${weatherModel.minTemp.floor().toString()}',
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -55,12 +59,12 @@ class WeatherInfoBody extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 55,
           ),
           Text(
-            'Sunny',
-            style: TextStyle(
+            weatherModel.condition,
+            style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
