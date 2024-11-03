@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/Models/weather_model.dart';
 
 class WeatherInfoBody extends StatelessWidget {
@@ -7,6 +8,7 @@ class WeatherInfoBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String image = weatherModel.image;
+    var hour = DateFormat("h").format(weatherModel.date);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -19,10 +21,10 @@ class WeatherInfoBody extends StatelessWidget {
             ),
           ),
           Text(
-            weatherModel.date,
+            'Updated at $hour:${weatherModel.date.minute.toString()}',
             style: const TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(
@@ -46,13 +48,13 @@ class WeatherInfoBody extends StatelessWidget {
                   Text(
                     'maxTemp : ${weatherModel.maxTemp.floor().toString()}',
                     style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   Text(
                     'minTemp : ${weatherModel.minTemp.floor().toString()}',
                     style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
