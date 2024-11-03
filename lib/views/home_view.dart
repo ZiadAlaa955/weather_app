@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_cubit.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_state.dart';
-import 'package:weather_app/Models/weather_model.dart';
 import 'package:weather_app/Widgets/no_weather_body.dart';
 import 'package:weather_app/Widgets/weather_info_body.dart';
-import 'package:weather_app/constants.dart';
 import 'package:weather_app/views/search_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -21,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kPrimaryColor,
+        elevation: 0,
         title: const Text(
           'Weatehr App',
           style: TextStyle(
@@ -52,7 +50,15 @@ class _HomeViewState extends State<HomeView> {
               weatherModel: state.weatherModel,
             );
           } else {
-            return const Text('There is an error ');
+            return const Center(
+              child: Text(
+                'Enter a correct city name',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            );
           }
         },
       ),

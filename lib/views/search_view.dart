@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_cubit.dart';
-import 'package:weather_app/Models/weather_model.dart';
-import 'package:weather_app/Services/weather_service.dart';
-import 'package:weather_app/constants.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
   static String id = 'searchView';
   @override
   Widget build(BuildContext context) {
+    final controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         iconTheme: const IconThemeData(
           color: Colors.white, // Set the color you want here
         ),
-        backgroundColor: kPrimaryColor,
         title: const Text(
           'Search City',
           style: TextStyle(
@@ -28,7 +26,8 @@ class SearchView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: TextField(
-            onSubmitted: (value) async {
+            controller: controller,
+            onSubmitted: (value) {
               GetWeatherCubit getWeatherCubit =
                   BlocProvider.of<GetWeatherCubit>(context);
               getWeatherCubit.getCurrentWeather(cityName: value);
@@ -38,8 +37,16 @@ class SearchView extends StatelessWidget {
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
               suffixIcon: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.search),
+                onPressed: () {
+                  GetWeatherCubit getWeatherCubit =
+                      BlocProvider.of<GetWeatherCubit>(context);
+                  getWeatherCubit.getCurrentWeather(cityName: controller.text);
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.black54,
+                ),
               ),
               suffixIconColor: Colors.grey,
               hintText: 'Enter city name',
@@ -47,8 +54,8 @@ class SearchView extends StatelessWidget {
                 color: Colors.grey,
               ),
               label: const Text('Search'),
-              border: customBorder(),
-              focusedBorder: customBorder(),
+              border: customBorder(color: Colors.grey),
+              focusedBorder: customBorder(color: Colors.black),
             ),
           ),
         ),
@@ -56,11 +63,11 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  OutlineInputBorder customBorder() {
+  OutlineInputBorder customBorder({required Color color}) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: const BorderSide(
-        color: Colors.grey,
+      borderSide: BorderSide(
+        color: color,
       ),
     );
   }
