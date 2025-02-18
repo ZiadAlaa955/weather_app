@@ -28,20 +28,14 @@ class SearchView extends StatelessWidget {
           child: TextField(
             controller: controller,
             onSubmitted: (value) {
-              GetWeatherCubit getWeatherCubit =
-                  BlocProvider.of<GetWeatherCubit>(context);
-              getWeatherCubit.getCurrentWeather(cityName: value);
-              Navigator.pop(context);
+              submitCityname(context, value);
             },
             decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
               suffixIcon: IconButton(
                 onPressed: () {
-                  GetWeatherCubit getWeatherCubit =
-                      BlocProvider.of<GetWeatherCubit>(context);
-                  getWeatherCubit.getCurrentWeather(cityName: controller.text);
-                  Navigator.pop(context);
+                  submitCityname(context, controller.text);
                 },
                 icon: const Icon(
                   Icons.search,
@@ -61,6 +55,12 @@ class SearchView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void submitCityname(BuildContext context, String value) {
+    GetWeatherCubit getWeatherCubit = BlocProvider.of<GetWeatherCubit>(context);
+    getWeatherCubit.getCurrentWeather(cityName: value);
+    Navigator.pop(context);
   }
 
   OutlineInputBorder customBorder({required Color color}) {

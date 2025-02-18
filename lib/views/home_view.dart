@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_cubit.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_state.dart';
+import 'package:weather_app/Widgets/error_message.dart';
 import 'package:weather_app/Widgets/no_weather_body.dart';
 import 'package:weather_app/Widgets/weather_info_body.dart';
 import 'package:weather_app/views/search_view.dart';
@@ -50,15 +51,7 @@ class _HomeViewState extends State<HomeView> {
               weatherModel: state.weatherModel,
             );
           } else {
-            return const Center(
-              child: Text(
-                'Enter a correct city name',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            );
+            return const ErrorMesasge();
           }
         },
       ),
