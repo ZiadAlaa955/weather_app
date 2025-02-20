@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:weather_app/Models/weather_model.dart';
 import 'package:weather_app/Utils/helper.dart';
 import 'package:weather_app/Widgets/weather_info.dart';
-import 'package:weather_app/main.dart';
 
 class WeatherInfoBody extends StatelessWidget {
   const WeatherInfoBody({super.key, required this.weatherModel});

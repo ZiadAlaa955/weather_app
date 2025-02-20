@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/Cubits/get_weather_cubit/get_weather_cubit.dart';
+import 'package:weather_app/Utils/helper.dart';
+import 'package:weather_app/Widgets/app_bar_text.dart';
+import 'package:weather_app/Widgets/search_icon_button.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
@@ -10,16 +11,7 @@ class SearchView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        iconTheme: const IconThemeData(
-          color: Colors.white, // Set the color you want here
-        ),
-        title: const Text(
-          'Search City',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        title: const AppBarText(title: 'Search City'),
       ),
       body: Center(
         child: Padding(
@@ -32,41 +24,22 @@ class SearchView extends StatelessWidget {
             decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
-              suffixIcon: IconButton(
+              suffixIcon: SearchIconButton(
                 onPressed: () {
                   submitCityname(context, controller.text);
                 },
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.black54,
-                ),
+                color: Colors.black54,
               ),
-              suffixIconColor: Colors.grey,
               hintText: 'Enter city name',
               hintStyle: const TextStyle(
                 color: Colors.grey,
               ),
               label: const Text('Search'),
               border: customBorder(color: Colors.grey),
-              focusedBorder: customBorder(color: Colors.black),
+              focusedBorder: customBorder(color: Colors.black87),
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  void submitCityname(BuildContext context, String value) {
-    GetWeatherCubit getWeatherCubit = BlocProvider.of<GetWeatherCubit>(context);
-    getWeatherCubit.getCurrentWeather(cityName: value);
-    Navigator.pop(context);
-  }
-
-  OutlineInputBorder customBorder({required Color color}) {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(5),
-      borderSide: BorderSide(
-        color: color,
       ),
     );
   }

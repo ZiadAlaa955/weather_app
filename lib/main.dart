@@ -4,8 +4,6 @@ import 'package:weather_app/Cubits/get_weather_cubit/get_weather_cubit.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_state.dart';
 import 'package:weather_app/Utils/app_routes.dart';
 import 'package:weather_app/Utils/helper.dart';
-import 'package:weather_app/views/home_view.dart';
-import 'package:weather_app/views/search_view.dart';
 
 void main() {
   runApp(const WeatherApp());

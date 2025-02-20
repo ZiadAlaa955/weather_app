@@ -2,6 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_cubit.dart';
 
+void submitCityname(BuildContext context, String value) {
+  GetWeatherCubit getWeatherCubit = BlocProvider.of<GetWeatherCubit>(context);
+  getWeatherCubit.getCurrentWeather(cityName: value);
+  Navigator.pop(context);
+}
+
+OutlineInputBorder customBorder({required Color color}) {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(5),
+    borderSide: BorderSide(
+      width: 1.2,
+      color: color,
+    ),
+  );
+}
+
 ThemeData themeData(BuildContext context) {
   return ThemeData(
     useMaterial3: false,
