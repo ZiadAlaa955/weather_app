@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_cubit.dart';
 import 'package:weather_app/Cubits/get_weather_cubit/get_weather_state.dart';
+import 'package:weather_app/Utils/app_routes.dart';
 import 'package:weather_app/Widgets/error_message.dart';
 import 'package:weather_app/Widgets/no_weather_body.dart';
 import 'package:weather_app/Widgets/weather_info_body.dart';
@@ -9,7 +11,6 @@ import 'package:weather_app/views/search_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
-  static String id = 'homePage';
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -33,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
             padding: const EdgeInsets.only(right: 7),
             child: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, SearchView.id);
+                GoRouter.of(context).push(searchView);
               },
               icon: const Icon(Icons.search),
               color: Colors.white,

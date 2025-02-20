@@ -4,7 +4,6 @@ import 'package:weather_app/Cubits/get_weather_cubit/get_weather_cubit.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
-  static String id = 'searchView';
   @override
   Widget build(BuildContext context) {
     final controller = TextEditingController();
